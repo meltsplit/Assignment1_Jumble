@@ -17,7 +17,7 @@ void solvingPuzzle(int chance, string answer) {
 	checkWithAnswer.append("]");
 	
 	while (count <= chance) {
-		cout << "[" << count++ << "/" << chance << "] ¸ÂÃçºÁ : ";
+		cout << "[" << count++ << "/" << chance << "] ¸ÂÃçºÁ : "; //¿µ¾î·Îº¯È¯
 		cin >> userAnswer;
 
 		for (int i = 0; i < length; i++) 
