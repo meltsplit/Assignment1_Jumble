@@ -1,10 +1,20 @@
 #include "std_lib_facilities.h"
 
+vector<string> wordList = { "drift", "professional","midnight","scatter","relevance","visit","disaster","commerce","coincide","progress","shift","spell","veil","desk","gown","umbrella","gregarious","craftman","wriggle","score","deliver","vote","dirty","chain","road","charter","feign","duck","highway","add","van","mutual","bang","table","venture","deficiency","depend","dimension","holiday","scrap","unlike","coast","command","base","recommand","spit","corner","huge","economic","sigh" };
+
+int chooseOption() {
+	int opt = 0;
+	while (true) {
+		cout << "Choose an option (1-3): ";
+		cin >> opt;
+		if (opt == 1 || opt == 2 || opt == 3) break;
+	}
+	return opt;
+}
 string swapping(int count, string answer) {
 	while (count--) {
 		int l = (int)answer.length();
 		swap(answer[randint(l - 1)], answer[randint(l - 1)]);
-		cout << randint(l - 1) << "<->" << randint(l - 1) << endl;
 	}
 	return answer;
 }
@@ -27,7 +37,8 @@ void solvingPuzzle(int chance, string answer) {
 			if (userAnswer[i] == answer[i])
 				checkWithAnswer[i] = answer[i];
 
-		cout << ">> [" << checkWithAnswer << "]" << endl << endl;
+		cout << ">> [" << checkWithAnswer << "]" << endl;
+		cout << "\n";
 		
 
 		if (userAnswer == answer) {
@@ -43,7 +54,7 @@ void solvingPuzzle(int chance, string answer) {
 	}
 	cout << "\n";
 }
-void solvePuzzle(vector<string> wordList) {
+void solvePuzzle() {
 	int opt = 0;
 	int chance = 0;
 	string problem = "";
@@ -55,12 +66,7 @@ void solvePuzzle(vector<string> wordList) {
 		cout << "3. Return" << endl;
 		cout << "\n";
 
-		while (true) {
-			cout << "Choose an option (1-3): ";
-			cin >> opt;
-			if (opt == 1 || opt == 2 || opt == 3) 
-				break;
-		}
+		opt = chooseOption();
 		cout << endl;
 		
 		switch (opt) {
@@ -82,11 +88,10 @@ void solvePuzzle(vector<string> wordList) {
 			break;
 		case 3: break; //Return 
 		}
-		
 	}
 	return;
 }
-vector<string> manageList(vector<string> wordList) {
+void manageList() {
 	int opt = 0;
 	while (opt != 3) {
 		string userInputWord = "";
@@ -95,11 +100,8 @@ vector<string> manageList(vector<string> wordList) {
 		cout << "2. Add Word" << endl;
 		cout << "3. Return" << endl;
 		cout << "\n";
-		while (true) {
-			cout << "Choose an option (1-3): ";
-			cin >> opt;
-			if (opt == 1 || opt == 2 || opt == 3) break;
-		}
+
+		opt = chooseOption();
 		cout << "\n";
 
 		switch (opt) {
@@ -115,7 +117,6 @@ vector<string> manageList(vector<string> wordList) {
 			cin >> userInputWord;
 
 			auto it = find(wordList.begin(), wordList.end(), userInputWord);
-
 			if (it != wordList.end())
 				cout << "The word \"" << userInputWord << "\" already exists in the list." << endl;
 			else {
@@ -123,20 +124,16 @@ vector<string> manageList(vector<string> wordList) {
 				cout << "The word \"" << userInputWord << "\" has been sucessfully inserted in the list." << endl;
 			}
 			cout << "\n";
+			sort(wordList);
 			break;
 		}
 		case 3: //Return
 			break;
 		}
-
-		sort(wordList);
 	}
-	return wordList;
 }
 int main() {
-	vector<string> wordList = { "drift", "professional","midnight","scatter","relevance","visit","disaster","commerce","coincide","progress","shift","spell","veil","desk","gown","umbrella","gregarious","craftman","wriggle","score","deliver","vote","dirty","chain","road","charter","feign","duck","highway","add","van","mutual","bang","table","venture","deficiency","depend","dimension","holiday","scrap","unlike","coast","command","base","recommand","spit","corner","huge","economic","sigh" };
 	sort(wordList);
-
 	int opt = 0;
 	while (opt != 3){
 		cout << "<<<  WORD JUMBLE  >>>" << endl;
@@ -144,18 +141,15 @@ int main() {
 		cout << "2. Solve Puzzle" << endl;
 		cout << "3. Exit" << endl;
 		cout << "\n";
-		while (1) {
-			cout << "Choose an option (1-3): ";
-			cin >> opt;
-			if (opt == 1 || opt == 2 || opt == 3) break;
-		}
+		opt = chooseOption();
 		cout << endl;
 		switch (opt) {
-		case 1: wordList = manageList(wordList); break;
-		case 2: solvePuzzle(wordList); break;
+		case 1: manageList(); break;
+		case 2: solvePuzzle(); break;
 		case 3: cout << "Good Bye~" << endl; break;
 		default: break;
 		}
 	}
 	return 0;
 }
+
